@@ -44,20 +44,20 @@ unsigned long Minute = 60;
 
 
 //Sprinklertider
-/*int spr1short = 6; // Lilla pop-up i hörnet mot grusgården. 4'a.
-int spr2short = 12; // Sektorspridare i häcken, kastar mot trallen. 5'a.
-int spr3short = 9; // Stora pop-up spridaren i gräset. 6'a.
-int spr4short = 9; // Sektorspridaren i häcken, kastar mot spabad. 7'a.
+/*int spr1short = 6*Minute; // Lilla pop-up i hörnet mot grusgården. 4'a.
+int spr2short = 12*Minute; // Sektorspridare i häcken, kastar mot trallen. 5'a.
+int spr3short = 9*Minute; // Stora pop-up spridaren i gräset. 6'a.
+int spr4short = 9*Minute; // Sektorspridaren i häcken, kastar mot spabad. 7'a.
 int spr5short = 1; // Ej i bruk;
-int spr6short = 4; // Lillsprutan vid framsidan i häcken, startar 2'a
-int spr7short = 9; // Sektorspridare i rabatt vid gräsklippare, kastar mot framsidan. 3'a.
-int spr8short = 6; // Dubbla rotorer framsidan, startar 1'a
+int spr6short = 4*Minute; // Lillsprutan vid framsidan i häcken, startar 2'a
+int spr7short = 9*Minute; // Sektorspridare i rabatt vid gräsklippare, kastar mot framsidan. 3'a.
+int spr8short = 6*Minute; // Dubbla rotorer framsidan, startar 1'a
 
 int spr1long = 30*Minute; // Lilla pop-up i hörnet mot grusgården. 4'a.
 int spr2long = 60*Minute; // Sektorspridare i häcken, kastar mot trallen. 5'a.
 int spr3long = 45*Minute; // Stora pop-up spridaren i gräset. 6'a.
 int spr4long = 45*Minute; // Sektorspridaren i häcken, kastar mot spabad. 7'a.
-int spr5long = 1*Minute; // Ej i bruk;
+int spr5long = 1; // Ej i bruk;
 int spr6long = 20*Minute; // Lillsprutan vid framsidan i häcken, startar 2'a
 int spr7long = 45*Minute; // Sektorspridare i rabatt vid gräsklippare, kastar mot framsidan. 3'a.
 int spr8long = 30*Minute; // Dubbla rotorer framsidan, startar 1'a
@@ -67,7 +67,7 @@ int spr1short = 10; // Lilla pop-up i hörnet mot grusgården. 4'a.
 int spr2short = 10; // Sektorspridare i häcken, kastar mot trallen. 5'a.
 int spr3short = 10; // Stora pop-up spridaren i gräset. 6'a.
 int spr4short = 10; // Sektorspridaren i häcken, kastar mot spabad. 7'a.
-int spr5short = 10; // Ej i bruk;
+int spr5short = 1; // Ej i bruk;
 int spr6short = 10; // Lillsprutan vid framsidan i häcken, startar 2'a
 int spr7short = 10; // Sektorspridare i rabatt vid gräsklippare, kastar mot framsidan. 3'a.
 int spr8short = 10; // Dubbla rotorer framsidan, startar 1'a
@@ -75,7 +75,7 @@ int spr1long = 10; // Lilla pop-up i hörnet mot grusgården. 4'a.
 int spr2long = 10; // Sektorspridare i häcken, kastar mot trallen. 5'a.
 int spr3long = 10; // Stora pop-up spridaren i gräset. 6'a.
 int spr4long = 10; // Sektorspridaren i häcken, kastar mot spabad. 7'a.
-int spr5long = 10; // Ej i bruk;
+int spr5long = 1; // Ej i bruk;
 int spr6long = 10; // Lillsprutan vid framsidan i häcken, startar 2'a
 int spr7long = 10; // Sektorspridare i rabatt vid gräsklippare, kastar mot framsidan. 3'a.
 int spr8long = 10; // Dubbla rotorer framsidan, startar 1'a
