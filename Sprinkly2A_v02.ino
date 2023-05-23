@@ -127,6 +127,7 @@ pinMode(s6, INPUT_PULLUP);
 pinMode(s7, INPUT_PULLUP);
 pinMode(s8, INPUT_PULLUP);
 pinMode(powerPin, OUTPUT);
+digitalWrite(powerPin, LOW);
 lcd.print("Pins setup...");
 delay(500);
 
@@ -134,7 +135,6 @@ delay(500);
 digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
 shiftOut(dataPin, clockPin, MSBFIRST, 0);     // Load the data to register using ShiftOut function
 digitalWrite(latchPin, HIGH);                 // Toggle latch to present the new data on register outputs
-digitalWrite(powerPin, LOW);
 lcd.setCursor(0,1);
 lcd.print("Relayboard reset...");
 delay(500);
@@ -200,7 +200,7 @@ if(day() == 2){
 }
 
 
-// Justera klockan
+// Justera klockan, needs to change to while-loop so it doesn't get stuck when resets or sprinklers start.
 int clkfwdstate = digitalRead(clkfwd);
 if(clkfwdstate == LOW){
   adjustTime(60);
@@ -371,10 +371,10 @@ if (currentSec > interval){
   delay(50);
 }
 
-/* Long water session
+/* water session data
 Data 1 = sektion 8
-Data 4 = sektion 6(egentligen 7)
-Data 2 = sektion 7(egentligen 6)
+Data 4 = sektion 6(egentligen 7?)
+Data 2 = sektion 7(egentligen 6?)
 Data 128 = sektion 1
 Data 64 = sektion 2
 Data 32 = sektion 3
@@ -386,7 +386,7 @@ data 8 = sektion 5
 while(hour() >= 20 && s8state == LOW && spr8longstate == 0 && day() == 1 || hour() <= 6 && s8state == LOW && spr8longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 1;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -441,7 +441,7 @@ while(hour() >= 20 && s8state == LOW && spr8longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s7state == LOW && spr7longstate == 0 && day() == 1 || hour() <= 6 && s7state == LOW && spr7longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 4;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -496,7 +496,7 @@ while(hour() >= 20 && s7state == LOW && spr7longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s6state == LOW && spr6longstate == 0 && day() == 1 || hour() <= 6 && s6state == LOW && spr6longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 2;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -551,7 +551,7 @@ while(hour() >= 20 && s6state == LOW && spr6longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s5state == LOW && spr5longstate == 0 && day() == 1 || hour() <= 6 && s5state == LOW && spr5longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 8;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -606,7 +606,7 @@ while(hour() >= 20 && s5state == LOW && spr5longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s1state == LOW && spr1longstate == 0 && day() == 1 || hour() <= 6 && s1state == LOW && spr1longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 128;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -661,7 +661,7 @@ while(hour() >= 20 && s1state == LOW && spr1longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s2state == LOW && spr2longstate == 0 && day() == 1 || hour() <= 6 && s2state == LOW && spr2longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 64;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -716,7 +716,7 @@ while(hour() >= 20 && s2state == LOW && spr2longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s3state == LOW && spr3longstate == 0 && day() == 1 || hour() <= 6 && s3state == LOW && spr3longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 32;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -771,7 +771,7 @@ while(hour() >= 20 && s3state == LOW && spr3longstate == 0 && day() == 1 || hour
 while(hour() >= 20 && s4state == LOW && spr4longstate == 0 && day() == 1 || hour() <= 6 && s4state == LOW && spr4longstate == 0 && day() == 2){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 16;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -830,7 +830,7 @@ while(hour() >= 20 && s4state == LOW && spr4longstate == 0 && day() == 1 || hour
 while(hour() >= 10 && hour() <= 18 && s8state == LOW && spr8shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 1;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -883,7 +883,7 @@ while(hour() >= 10 && hour() <= 18 && s8state == LOW && spr8shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s7state == LOW && spr7shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 4;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -937,7 +937,7 @@ while(hour() >= 10 && hour() <= 18 && s7state == LOW && spr7shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s6state == LOW && spr6shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 2;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -993,7 +993,7 @@ while(hour() >= 10 && hour() <= 18 && s6state == LOW && spr6shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s5state == LOW && spr5shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 8;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -1047,7 +1047,7 @@ while(hour() >= 10 && hour() <= 18 && s5state == LOW && spr5shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s1state == LOW && spr1shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 128;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -1101,7 +1101,7 @@ while(hour() >= 10 && hour() <= 18 && s1state == LOW && spr1shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s2state == LOW && spr2shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 64;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -1155,7 +1155,7 @@ while(hour() >= 10 && hour() <= 18 && s2state == LOW && spr2shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s3state == LOW && spr3shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 32;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
@@ -1209,7 +1209,7 @@ while(hour() >= 10 && hour() <= 18 && s3state == LOW && spr3shortstate == 0){
 while(hour() >= 10 && hour() <= 18 && s4state == LOW && spr4shortstate == 0){
   if(data == 0){ // runs once
     digitalWrite(powerPin, HIGH);
-    delay(500);
+    delay(1505);
     data = 16;
     digitalWrite(latchPin, LOW);                  // Latch is low while we load new data to register
     shiftOut(dataPin, clockPin, MSBFIRST, data);  // Load the data to register using ShiftOut function
